@@ -4,6 +4,12 @@
 
   const select = {
     booklist: '.books-list',
+    bookImage: '.book__image',
+
+  };
+
+  const classNames = {
+    favoriteBook: 'favorite',
 
   };
 
@@ -26,4 +32,28 @@
   }
 
   render();
+
+  let favouriteBooks = [];
+
+  function initActions(){
+
+    const booksList = document.querySelector(select.booklist);
+    const booksImage = booksContainer.querySelectorAll(select.bookImage);
+
+    for(let image of booksImage){
+
+      image.addEventListener('dblclick', function(event) {
+        event.preventDefault();
+        image.classList.add(classNames.favoriteBook);
+
+        const idCheck = image.getAttribute('data-id');
+        favouriteBooks.push(idCheck);
+      });
+    }
+  }
+
+  initActions();
+
+
+
 }
