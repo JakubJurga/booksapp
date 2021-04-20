@@ -10,6 +10,7 @@
 
   const classNames = {
     favoriteBook: 'favorite',
+    bookClass: 'book__image'
 
   };
 
@@ -40,26 +41,28 @@
     const booksList = document.querySelector(select.booklist);
     const booksImage = booksList.querySelectorAll(select.bookImage);
 
-    for(let image of booksImage){
 
-        image.addEventListener('dblclick', function(event) {
-          if(!image.classList.contains("favorite")){
 
+    booksList.addEventListener('dblclick', function(event) {
+      if(event.target.offsetParent.classList.contains(classNames.bookClass)){
           event.preventDefault();
 
-          image.classList.add(classNames.favoriteBook);
+        if(!event.target.offsetParent.classList.contains(classNames.favoriteBook)){
 
-          const idCheck = image.getAttribute('data-id');
+          event.target.offsetParent.classList.add(classNames.favoriteBook);
+
+          const idCheck = event.target.offsetParent.getAttribute('data-id');
           favouriteBooks.push(idCheck);
         }
-      else if (image.classList.contains("favorite")){
-        image.classList.remove("favorite");
-      }
+        else if (event.target.offsetParent.classList.contains(classNames.favoriteBook)){
+          event.target.offsetParent.classList.remove(classNames.favoriteBook);
+        }
 
+      }
     });
 
-    }
   }
+
 
   initActions();
 
