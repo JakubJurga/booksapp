@@ -1,19 +1,29 @@
-const select = {
-  booklist: '.books-list',
-
-}
-
-const templates = {
-  template: Handlebars.compile(document.getElementById('template-book').innerHTML)
-}
+{
+  'use strict';
 
 
-function render () {
-  for (const id of dataSource.books){
-    const generatedHTML = templates.template(id);
+  const select = {
+    booklist: '.books-list',
 
-    const id = utils.createDOMFromHTML(generatedHTML);
+  };
 
-    booklist.appendChild(id);
+  const templates = {
+    template: Handlebars.compile(document.getElementById('template-book').innerHTML)
+  };
+
+
+  function render () {
+    for (const id of dataSource.books){
+      const booklist = document.querySelector(select.booklist);
+      const generatedHTML = templates.template(id);
+
+      const elementHTML = utils.createDOMFromHTML(generatedHTML);
+
+      booklist.appendChild(elementHTML);
+
+
+    }
   }
+
+  render();
 }
