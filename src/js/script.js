@@ -38,17 +38,26 @@
   function initActions(){
 
     const booksList = document.querySelector(select.booklist);
-    const booksImage = booksContainer.querySelectorAll(select.bookImage);
+    const booksImage = booksList.querySelectorAll(select.bookImage);
 
     for(let image of booksImage){
 
-      image.addEventListener('dblclick', function(event) {
-        event.preventDefault();
-        image.classList.add(classNames.favoriteBook);
+        image.addEventListener('dblclick', function(event) {
+          if(!image.classList.contains("favorite")){
 
-        const idCheck = image.getAttribute('data-id');
-        favouriteBooks.push(idCheck);
-      });
+          event.preventDefault();
+
+          image.classList.add(classNames.favoriteBook);
+
+          const idCheck = image.getAttribute('data-id');
+          favouriteBooks.push(idCheck);
+        }
+      else if (image.classList.contains("favorite")){
+        image.classList.remove("favorite");
+      }
+
+    });
+
     }
   }
 
